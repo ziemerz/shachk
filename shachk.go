@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"os"
 	"log"
 	"io"
@@ -15,11 +14,9 @@ import (
 
 func main() {
 	var fileFlag string
-	flag.StringVar(&fileFlag, "f", "filename", "Name of file to check shasum for")
-	flag.Parse()
+	fileFlag = os.Args[1]
 
 	hasher := sha256.New()
-
 
 	file, err := os.Open(fileFlag)
 	if err != nil {
@@ -44,7 +41,6 @@ func main() {
 			body, _  := ioutil.ReadAll(resp.Body)
 			trueSum = strings.Split(string(body), " ")[0]
 		}
-
 	}
 
 	if fileSum == trueSum {
