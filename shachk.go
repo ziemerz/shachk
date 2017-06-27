@@ -13,6 +13,13 @@ import (
 )
 
 func main() {
+
+	if len(os.Args) < 2 {
+		log.Fatal("\nYou have to provide two arguments. \n1: the file you wish to check. " +
+			"\n2. the sha256 sum or a http/https link to a file containing the sha256 sum")
+	}
+
+
 	var fileFlag string
 	fileFlag = os.Args[1]
 
